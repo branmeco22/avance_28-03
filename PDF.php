@@ -27,18 +27,18 @@ class PDF extends FPDF
         //Enmarcación del recuado
         $this->Cell(278, -35, '', 1, 0, 'C');
 
-        $this->Ln(0.7);
+        $this->Ln(1.0);
         //Enmarcación del recuado
-        $this->Cell(278, 16, '', 1, 0, 'C');
-        $this->Ln(16.7);
+        $this->Cell(278, 15, '', 1, 0, 'C');
+        $this->Ln();
     }
 
     function subHeader()
     {
-        $this->SetY(40);
+        $this->SetY(38);
         //sub-encabezado
         $this->SetTextColor(0, 0, 0);
-        $this->Ln(5);
+        $this->Ln();
         $this->setFont('Arial', 'B', 10);
         $this->Cell(25, 5, 'Estudiante: ', 0, 0);
         $this->SetFont('Arial', '', 10);
@@ -75,12 +75,12 @@ class PDF extends FPDF
         $this->Cell(20, 5, 'Fecha: ', 0, 0);
         $this->SetFont('Arial', '', 10);
         $this->Cell(20, 5, utf8_decode('26/11/2021'));
-        $this->Ln(7);
+        $this->Ln(5);
     }
 
     function cabeceraHorizontal($cabecera)
     {
-        $this->SetXY(10, 60);
+        $this->SetXY(10, 59);
         $this->SetFont('Arial', 'B', 10);
         $this->SetFillColor(2, 157, 116); //Fondo verde de celda
         $this->SetTextColor(240, 255, 240); //Letra color blanco
@@ -96,12 +96,12 @@ class PDF extends FPDF
         $this->CellFitSpace(50, 7, utf8_decode('VALORACIONES POR PERÍODO'), 1, 0, 'L', true);
         $this->CellFitSpace(55, 7, utf8_decode('DEFINITIVA ASIGNATURA'), 1, 0, 'L', true);
         $this->CellFitSpace(50, 7, utf8_decode('RECUPERACION'), 1, 0, 'L', true);
-        $this->Ln(7);
+        $this->Ln(5);
     }
 
     function datosHorizontal($datos)
     {
-        $this->SetXY(10, 67.7);
+        $this->SetXY(10, 67);
         $this->SetFont('Arial', '', 10);
         $this->SetFillColor(229, 229, 229); //Gris tenue de cada fila
         $this->SetTextColor(3, 3, 3); //Color del texto: Negro
@@ -158,7 +158,7 @@ class PDF extends FPDF
         //Pass on to Cell method
         $this->Cell($w, $h, $txt, $border, $ln, $align, $fill, $link);
 
-        //Reset character spacing/horizontal scaling
+        //Restablecer espaciado entre caracteres/escala horizontal
         if ($fit)
             $this->_out('BT ' . ($scale ? '100 Tz' : '0 Tc') . ' ET');
     }
@@ -168,7 +168,7 @@ class PDF extends FPDF
         $this->CellFit($w, $h, $txt, $border, $ln, $align, $fill, $link, false, false);
     }
 
-    //Patch to also work with CJK double-byte text
+    //Parche para trabajar también con texto de doble byte CJK
     function MBGetStringLength($s)
     {
         if ($this->CurrentFont['type'] == 'Type0') {
@@ -191,6 +191,14 @@ class PDF extends FPDF
 
     public function footer()
     {
+        $this->SetY(151);
+        $this->Ln(0.7);
+        $this->Cell(278, 12, '', 1, 0, 'L', 0);
+        $this->Cell(-220, 5, 'OBSERVACIONES: ', 0, 0, 'R', 0);
+        $this->SetFont('Arial', 'B');
+        $this->Cell(80, 5, 'PROMOVIDO(A) AL GRADO SEGUNDO', 0, 0, 'L', 0);
+        $this->Ln(0.7);
+
         $this->SetFont('Arial', 'B', 10);
         $this->SetY(-45);
         $this->Cell(45, 5, 'ESCALA NACIONAL', 1, 0, 'L', 0);
