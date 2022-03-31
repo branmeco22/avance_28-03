@@ -8,7 +8,7 @@ class PDF extends FPDF
         $this->SetFont('Arial', 'B', 12);
         $this->Image('img/carlos_ramon.png', 20, 10, 20, 20, 'png');
         $this->Cell(0, 5, 'INSTITUCION EDICATIVA CARLOS RAMON REPIZO', 0, 0, 'C');
-        $this->Image('img/Escudo_del_Huila.svg.png', 255, 10, 20, 20, 'png');
+        $this->Image('img/Escudo_del_Huila.svg.png', 310, 10, 20, 20, 'png');
         $this->Ln(3);
         $this->SetFont('Helvetica', '', 7);
         $this->Cell(0, 5, utf8_decode('SAN AGUSTÍN - HUILA'), 0, 0, 'C');
@@ -25,24 +25,24 @@ class PDF extends FPDF
         $this->Ln(10);
 
         //Enmarcación del recuado
-        $this->Cell(278, -35, '', 1, 0, 'C');
+        $this->Cell(335, -35, '', 1, 0, 'C');
 
         $this->Ln(1.0);
         //Enmarcación del recuado
-        $this->Cell(278, 15, '', 1, 0, 'C');
+        $this->Cell(335, 15, '', 1, 0, 'C');
         $this->Ln();
     }
 
     function subHeader()
     {
-        $this->SetY(38);
+        $this->SetY(40);
         //sub-encabezado
         $this->SetTextColor(0, 0, 0);
         $this->Ln();
-        $this->setFont('Arial', 'B', 10);
-        $this->Cell(25, 5, 'Estudiante: ', 0, 0);
+        $this->setFont('Arial', 'B', 12);
+        $this->Cell(30, 5, 'Estudiante: ', 0, 0);
         $this->SetFont('Arial', '', 10);
-        $this->Cell(110, 5, utf8_decode('ELIZABETH ARGOTE BOLAÑOS'), 0, 0);
+        $this->Cell(120, 5, utf8_decode('ELIZABETH ARGOTE BOLAÑOS'), 0, 0);
         $this->Ln();
         $this->setFont('Arial', 'B', 10);
         $this->Cell(20, 5, 'Sede: ');
@@ -75,13 +75,13 @@ class PDF extends FPDF
         $this->Cell(20, 5, 'Fecha: ', 0, 0);
         $this->SetFont('Arial', '', 10);
         $this->Cell(20, 5, utf8_decode('26/11/2021'));
-        $this->Ln(5);
+        $this->Ln(7);
     }
 
     function cabeceraHorizontal($cabecera)
     {
         $this->SetXY(10, 59);
-        $this->SetFont('Arial', 'B', 10);
+        $this->SetFont('Arial', 'B', 12);
         $this->SetFillColor(2, 157, 116); //Fondo verde de celda
         $this->SetTextColor(240, 255, 240); //Letra color blanco
 
@@ -89,32 +89,32 @@ class PDF extends FPDF
         //         $this->CellFitSpace(30, 7, utf8_decode($fila), 1, 0, 'L', true);
         //     }
         // }
-        $this->CellFitSpace(55, 7, utf8_decode('COMPETENCIA'), 1, 0, 'L', true);
-        $this->CellFitSpace(20, 7, utf8_decode('DEF. ÁREA'), 1, 0, 'L', true);
-        $this->CellFitSpace(40, 7, utf8_decode('PENSAMIENTOS'), 1, 0, 'L', true);
-        $this->CellFitSpace(8, 7, utf8_decode('IHS'), 1, 0, 'L', true);
-        $this->CellFitSpace(50, 7, utf8_decode('VALORACIONES POR PERÍODO'), 1, 0, 'L', true);
-        $this->CellFitSpace(55, 7, utf8_decode('DEFINITIVA ASIGNATURA'), 1, 0, 'L', true);
-        $this->CellFitSpace(50, 7, utf8_decode('RECUPERACION'), 1, 0, 'L', true);
-        $this->Ln(5);
+        $this->CellFitSpace(60, 7, utf8_decode('COMPETENCIA'), 1, 0, 'C', true);
+        $this->CellFitSpace(30, 7, utf8_decode('DEF. ÁREA'), 1, 0, 'C', true);
+        $this->CellFitSpace(50, 7, utf8_decode('PENSAMIENTOS'), 1, 0, 'C', true);
+        $this->CellFitSpace(15, 7, utf8_decode('IHS'), 1, 0, 'C', true);
+        $this->CellFitSpace(60, 7, utf8_decode('VALORACIONES POR PERÍODO'), 1, 0, 'C', true);
+        $this->CellFitSpace(60, 7, utf8_decode('DEFINITIVA ASIGNATURA'), 1, 0, 'C', true);
+        $this->CellFitSpace(60, 7, utf8_decode('RECUPERACION'), 1, 0, 'C', true);
+        $this->Ln(7);
     }
 
     function datosHorizontal($datos)
     {
         $this->SetXY(10, 67);
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Arial', '', 12);
         $this->SetFillColor(229, 229, 229); //Gris tenue de cada fila
         $this->SetTextColor(3, 3, 3); //Color del texto: Negro
         $bandera = false; //Para alternar el relleno
         foreach ($datos as $fila) {
             //Usaremos CellFitSpace en lugar de Cell
-            $this->CellFitSpace(55, 7, utf8_decode($fila['competencia']), 1, 0, 'L', $bandera);
-            $this->CellFitSpace(20, 7, utf8_decode($fila['defArea']), 1, 0, 'L', $bandera);
-            $this->CellFitSpace(40, 7, utf8_decode($fila['pensamiento']), 1, 0, 'L', $bandera);
-            $this->CellFitSpace(8, 7, utf8_decode($fila['ihs']), 1, 0, 'L', $bandera);
-            $this->CellFitSpace(50, 7, utf8_decode($fila['valoracionPeriodo']), 1, 0, 'L', $bandera);
-            $this->CellFitSpace(55, 7, utf8_decode($fila['definitivaAsignatura']), 1, 0, 'L', $bandera);
-            $this->CellFitSpace(50, 7, utf8_decode($fila['recuperacion']), 1, 0, 'L', $bandera);
+            $this->CellFitSpace(60, 7, utf8_decode($fila['competencia']), 1, 0, 'L', $bandera);
+            $this->CellFitSpace(30, 7, utf8_decode($fila['defArea']), 1, 0, 'L', $bandera);
+            $this->CellFitSpace(50, 7, utf8_decode($fila['pensamiento']), 1, 0, 'L', $bandera);
+            $this->CellFitSpace(15, 7, utf8_decode($fila['ihs']), 1, 0, 'L', $bandera);
+            $this->CellFitSpace(60, 7, utf8_decode($fila['valoracionPeriodo']), 1, 0, 'L', $bandera);
+            $this->CellFitSpace(60, 7, utf8_decode($fila['definitivaAsignatura']), 1, 0, 'L', $bandera);
+            $this->CellFitSpace(60, 7, utf8_decode($fila['recuperacion']), 1, 0, 'L', $bandera);
             $this->Ln(7); //Salto de línea para generar otra fila
             $bandera = !$bandera; //Alterna el valor de la bandera
         }
@@ -146,16 +146,16 @@ class PDF extends FPDF
                 //Establecer escala horizontal
                 $this->_out(sprintf('BT %.2F Tz ET', $horiz_scale));
             } else {
-                //Calculate character spacing in points
+                //Calcular el espacio entre caracteres en puntos
                 $char_space = ($w - $this->cMargin * 2 - $str_width) / max($this->MBGetStringLength($txt) - 1, 1) * $this->k;
-                //Set character spacing
+                //Establecer espaciado entre caracteres
                 $this->_out(sprintf('BT %.2F Tc ET', $char_space));
             }
-            //Override user alignment (since text will fill up cell)
+            //Anular la alineación del usuario (ya que el texto llenará la celda)
             $align = '';
         }
 
-        //Pass on to Cell method
+        //Pasar al método de celda
         $this->Cell($w, $h, $txt, $border, $ln, $align, $fill, $link);
 
         //Restablecer espaciado entre caracteres/escala horizontal
@@ -191,12 +191,12 @@ class PDF extends FPDF
 
     public function footer()
     {
-        $this->SetY(151);
+        $this->SetY(151.3);
         $this->Ln(0.7);
-        $this->Cell(278, 12, '', 1, 0, 'L', 0);
-        $this->Cell(-220, 5, 'OBSERVACIONES: ', 0, 0, 'R', 0);
+        $this->Cell(335, 17.7, '', 1, 0, 'L', 0);
+        $this->Cell(-300, 10, 'OBSERVACIONES: ', 0, 0, 'R', 0);
         $this->SetFont('Arial', 'B');
-        $this->Cell(80, 5, 'PROMOVIDO(A) AL GRADO SEGUNDO', 0, 0, 'L', 0);
+        $this->Cell(50, 10, 'PROMOVIDO(A) AL GRADO SEGUNDO', 0, 0, 'L', 0);
         $this->Ln(0.7);
 
         $this->SetFont('Arial', 'B', 10);
@@ -211,7 +211,6 @@ class PDF extends FPDF
         $this->Ln();
         $this->Cell(45, 5, '1.00 - 2.90 = Bajo', 1, 0, 'L', 0);
 
-
         $this->SetFont('Arial', 'B', 10);
         $this->SetXY(90, -35);
         $this->Line(85, 180, 150, 180);
@@ -222,12 +221,12 @@ class PDF extends FPDF
         $this->Cell(55, 5, 'RECTOR(A)', 0, 0, 'C', 0);
 
         $this->SetFont('Arial', 'B', 10);
-        $this->SetXY(180, -35);
-        $this->Line(175, 180, 260, 180);
+        $this->SetXY(225, -35);
+        $this->Line(220, 180, 310, 180);
         $this->Cell(75, 5, utf8_decode('JACQUELINE MONTAÑEZ BOHORQUEZ'), 0, 0, 'C', 0);
         $this->Ln();
         $this->SetFont('Arial', '', 10);
-        $this->SetXY(180, -30);
+        $this->SetXY(225, -30);
         $this->Cell(75, 5, utf8_decode('SECRETARÍA ACADEMICA'), 0, 0, 'C', 0);
     }
 } // FIN Class PDF

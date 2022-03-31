@@ -2,7 +2,7 @@
 include_once('PDF.php');
 $pdf = new PDF();
 
-$pdf->AddPage('LANDSCAPE', 'A4');
+$pdf->AddPage('LANDSCAPE', 'LEGAL');
 
 $pdf->SetFont('Arial', '', 10);
 $miCabecera = array('COMPETENCIA', 'DEF. ÁREA', 'PENSAMIENTO', 'IHS', 'VALORACIONES POR PERÍODO', 'DEFINITIVA ASIGNATURA', 'RECUPERACIÓN');
