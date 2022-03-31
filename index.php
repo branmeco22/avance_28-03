@@ -2,7 +2,7 @@
 include_once('PDF.php');
 $pdf = new PDF();
 
-$pdf->AddPage('LANDSCAPE', 'LETTER');
+$pdf->AddPage('LANDSCAPE', 'A4');
 
 $pdf->SetFont('Arial', '', 10);
 $miCabecera = array('COMPETENCIA', 'DEF. ÁREA', 'PENSAMIENTO', 'IHS', 'VALORACIONES POR PERÍODO', 'DEFINITIVA ASIGNATURA', 'RECUPERACIÓN');
@@ -23,5 +23,5 @@ $misDatos = array(
 );
 
 $pdf->tablaHorizontal($miCabecera, $misDatos);
-
+$pdf->subHeader();
 $pdf->Output(); //Salida al navegador
